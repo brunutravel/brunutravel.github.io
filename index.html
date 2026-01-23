@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brunu Travel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- ESTILO GERAL (Apple Style / Minimalista) --- */
+        :root {
+            --bg-color: #F5F5F7; /* Cinza Apple */
+            --card-bg: #FFFFFF;
+            --text-main: #1D1D1F;
+            --text-secondary: #86868B;
+            --whatsapp-green: #25D366;
+            --btn-gray: #F2F2F7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            /* IMAGEM DE FUNDO (GLOBO) */
+            /* background-image: url('earth.png');*/
+            background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.6)), url('earth.png'); 
+            background-repeat: no-repeat;
+            background-position: center 90px;
+            background-size: 110% auto; /* Ajusta ao tamanho do ecrã */
+        }
+
+        /* Container Principal - Margem superior reduzida para "subir" tudo */
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 100px; /* Reduzido de 40px para 20px */
+        }
+
+        /* --- PERFIL --- */
+        .profile-img {
+            width: 110px; /* Ligeiramente menor para compactar */
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 4px; /* Espaçamento reduzido */
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 4px; /* Muito perto da tagline */
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: var(--text-main);
+            font-weight: 400;
+            margin-bottom: 10px; /* Reduzido */
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #ccc;
+            display: inline-block;
+            width: 80%;
+        }
+
+        /* --- REDES SOCIAIS --- */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 15px; /* Reduzido para aproximar do card */
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            font-size: 18px;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .social-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- CARD BRANCO --- */
+        .card {
+            /*background: var(--card-bg); */
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 25px 20px; /* Padding interno ligeiramente reduzido */
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+            text-align: left;
+            /* Adiciona esta linha para criar um efeito de vidro "blur" atrás (opcional mas fica bonito): */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .services-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .services-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px; /* Itens mais juntos */
+            font-size: 14px;
+            line-height: 1.3;
+            color: #333;
+        }
+
+        .services-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--text-main);
+            font-weight: bold;
+        }
+
+        /* --- BOTÃO WHATSAPP --- */
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--btn-gray); /* Fundo claro */
+            color: #333; /* Texto escuro */
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 25px;
+            transition: background 0.2s;
+        }
+
+        .whatsapp-btn i {
+            color: var(--whatsapp-green); /* Ícone verde */
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #e5e5ea;
+        }
+
+        /* --- COLABORAÇÕES --- */
+        .collabs-title {
+            font-size: 12px;
+            text-transform: none; /* Remove maiúsculas forçadas */
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            padding-left: 5px;
+            font-weight: 500;
+        }
+
+        .collab-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            border: 1px solid #E5E5E5;
+            border-radius: 16px; /* Pill shape mais suave */
+            padding: 10px 16px;
+            margin-bottom: 8px;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: all 0.2s;
+        }
+
+        .collab-item:hover {
+            border-color: #d1d1d1;
+            transform: translateY(-1px);
+        }
+
+        .collab-name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .link-badge {
+            background: #F5F5F7;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            margin-top: 25px;
+            font-size: 11px;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <img src="profile.jpg" alt="Brunu Travel" class="profile-img">
+        
+        <h1>Brunu Travel</h1>
+        <div class="tagline">Travel Leader & Content Creator</div>
+
+        <div class="social-icons">
+            <a href="https://www.instagram.com/brunu_uncut_travel" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61586558676697" target="_blank" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.tiktok.com/@brunu_uncut_travel" target="_blank" class="social-btn"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@brunu_uncut_travel" target="_blank" class="social-btn"><i class="fab fa-youtube"></i></a>
+        </div>
+
+        <div class="card">
+            
+            <ul class="services-list">
+                <li>Planned and led trips for groups & families</li>
+                <li>Content creation for Products & Experiences</li>
+                <li>Background in Tech Product Management</li>
+            </ul>
+
+            <a href="#" class="whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> Contact via WhatsApp
+            </a>
+
+            <div class="collabs-title">Collaborations</div>
+
+            <a href="https://instagram.com/riia.rh" target="_blank" class="collab-item">
+                <span class="collab-name">Riia recursos humanos</span>
+                <span class="link-badge">Link</span>
+            </a>
+
+            <a href="https://instagram.com/viagens.rainho" target="_blank" class="collab-item">
+                <span class="collab-name">Viagens Rainho</span>
+                <span class="link-badge">Link</span>
+            </a>
+
+            <div class="footer">
+                © 2026 Brunu Travel • v1.6.0
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
