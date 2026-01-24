@@ -13,7 +13,7 @@
   --bg-site: #f9fafb; 
   --text-main: #3c3c43;
   --text-soft: #55555a; 
-  --accent-blue: #5D8AA8; 
+  --accent-blue: #5D8AA8; /* Cor azul premium consistente */
   --radius: 24px;
 }
 
@@ -27,13 +27,7 @@ body {
   overflow-x: hidden; 
 }
 
-/* --- ANIMAÇÃO: ROTAÇÃO ANTI-HORÁRIA --- */
-@keyframes rodarGlobo {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(-360deg); } /* Sinal negativo faz girar para a esquerda/anti-horário */
-}
-
-/* --- ELEMENTO DO GLOBO (Configuração Global: Mobile e Desktop) --- */
+/* --- ELEMENTO DO GLOBO (Padrão Mobile/Nobile) --- */
 .background-globe {
   position: absolute;
   top: -120px; 
@@ -47,13 +41,9 @@ body {
   opacity: 0.40; 
   z-index: -1;
   pointer-events: none;
-  
-  /* Ativado para todas as versões */
-  animation: rodarGlobo 120s linear infinite;
-  transform-origin: center center;
 }
 
-/* --- ESTRUTURA MOBILE --- */
+/* --- ESTRUTURA MOBILE (PADRÃO) --- */
 .avatarWrap {
   display: flex;
   justify-content: center;
@@ -113,6 +103,7 @@ body {
 
 .social a:hover { transform: scale(1.1); }
 
+/* Cartão Mobile */
 .card {
   background: #fff;
   border-radius: var(--radius);
@@ -139,7 +130,11 @@ body {
   padding-left: 8px; 
 }
 
-.cta { display:flex; justify-content:center; }
+/* Botão WhatsApp Azul */
+.cta {
+  display:flex;
+  justify-content:center;
+}
 .btnWa {
   width: 100%;
   max-width: 190px; 
@@ -158,6 +153,7 @@ body {
 }
 
 .btnWa:hover { opacity: 0.9; }
+
 .btnWa i { color: #fff; font-size: 16px; }
 
 .location-info {
@@ -173,6 +169,7 @@ body {
 .featuredTitle {
   font-size: 10px;
   letter-spacing: 0.8px;
+  text-transform: none; 
   color: #999;
   font-weight: 700;
   margin-bottom: 12px;
@@ -209,14 +206,14 @@ footer {
   padding-bottom: 40px;
 }
 
-/* --- AJUSTES APENAS DESKTOP --- */
+/* --- ALTERAÇÕES APENAS DESKTOP --- */
 @media (min-width: 1024px) {
   .background-globe {
-    background-size: 1100px; 
-    top: -50px; /* Posicionado mais abaixo para mostrar a curva superior */
-    background-position: center center;
-    opacity: 0.30;
-    height: 1500px;
+    background-size: 900px;    /* Slightly smaller so it doesn't fill the whole height */
+    top: -200px;                 /* Changed from -100px to 50px to push it DOWN */
+    background-position: center top;
+    opacity: 0.35;
+    height: 1200px;            /* Increased height to ensure it doesn't cut off at the bottom */
   }
   
   .avatarWrap {
@@ -231,15 +228,15 @@ footer {
     background: #fff;
     border-radius: var(--radius);
     box-shadow: 0 15px 40px rgba(0,0,0,0.06); 
-    /* Redução do espaço em branco inferior no card */
-    padding: 50px 50px 25px; 
+    padding: 50px 50px 50px; 
+    border: 1px solid rgba(0,0,0,0.01);
     position: relative;
     z-index: 1;
   }
-
+  /* ADICIONE ESTE BLOCO ABAIXO PARA ENCURTAR O ESPAÇO DO RODAPÉ */
   footer {
-    margin-top: 10px; 
-    padding-bottom: 0px; 
+    margin-top: 10px;    /* Reduzido de 30px para 15px */
+    padding-bottom: 0px; /* Reduzido para aproximar o texto da borda */
   }
   
   .name { font-size: 32px; margin-top: 10px; }
@@ -254,6 +251,7 @@ footer {
   
   .bullets { font-size: 13px; }
   .bullets li { margin: 10px 0; }
+  
   .btnWa { max-width: 250px; }
 }
 </style>
