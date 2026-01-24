@@ -13,7 +13,7 @@
   --bg-site: #f9fafb; 
   --text-main: #3c3c43;
   --text-soft: #55555a; 
-  --accent-blue: #5D8AA8; /* Cor azul premium consistente */
+  --accent-blue: #5D8AA8; 
   --radius: 24px;
 }
 
@@ -27,7 +27,13 @@ body {
   overflow-x: hidden; 
 }
 
-/* --- ELEMENTO DO GLOBO (Padrão Mobile/Nobile) --- */
+/* --- ANIMAÇÃO DO GLOBO (Definição) --- */
+@keyframes rodarGlobo {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* --- ELEMENTO DO GLOBO (Padrão Mobile/Nobile - Sem Animação) --- */
 .background-globe {
   position: absolute;
   top: -120px; 
@@ -38,7 +44,7 @@ body {
   background-size: 130%; 
   background-position: center top;
   background-repeat: no-repeat;
-  opacity: 0.25; 
+  opacity: 0.40; 
   z-index: -1;
   pointer-events: none;
 }
@@ -51,8 +57,8 @@ body {
 }
 
 .avatar {
-  width: 120px;
-  height: 120px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 8px 30px rgba(0,0,0,0.1);
@@ -153,7 +159,6 @@ body {
 }
 
 .btnWa:hover { opacity: 0.9; }
-
 .btnWa i { color: #fff; font-size: 16px; }
 
 .location-info {
@@ -169,7 +174,6 @@ body {
 .featuredTitle {
   font-size: 10px;
   letter-spacing: 0.8px;
-  text-transform: none; 
   color: #999;
   font-weight: 700;
   margin-bottom: 12px;
@@ -209,11 +213,15 @@ footer {
 /* --- ALTERAÇÕES APENAS DESKTOP --- */
 @media (min-width: 1024px) {
   .background-globe {
-    background-size: 900px;    /* Slightly smaller so it doesn't fill the whole height */
-    top: -200px;                 /* Changed from -100px to 50px to push it DOWN */
-    background-position: center top;
-    opacity: 0.35;
-    height: 1200px;            /* Increased height to ensure it doesn't cut off at the bottom */
+    background-size: 1100px; 
+    top: -300px; 
+    background-position: center center;
+    opacity: 0.30;
+    height: 1500px;
+    width: 100%;
+    /* ATIVAÇÃO DA ROTAÇÃO: 120 segundos para ser subtil */
+    animation: rodarGlobo 120s linear infinite;
+    transform-origin: center center;
   }
   
   .avatarWrap {
@@ -228,15 +236,15 @@ footer {
     background: #fff;
     border-radius: var(--radius);
     box-shadow: 0 15px 40px rgba(0,0,0,0.06); 
-    padding: 50px 50px 50px; 
-    border: 1px solid rgba(0,0,0,0.01);
+    /* AJUSTE: Reduzi o último valor para 25px para encurtar o fundo */
+    padding: 50px 50px 25px; 
     position: relative;
     z-index: 1;
   }
-  /* ADICIONE ESTE BLOCO ABAIXO PARA ENCURTAR O ESPAÇO DO RODAPÉ */
+
   footer {
-    margin-top: 10px;    /* Reduzido de 30px para 15px */
-    padding-bottom: 0px; /* Reduzido para aproximar o texto da borda */
+    margin-top: 8px; 
+    padding-bottom: 0px; 
   }
   
   .name { font-size: 32px; margin-top: 10px; }
@@ -251,7 +259,6 @@ footer {
   
   .bullets { font-size: 13px; }
   .bullets li { margin: 10px 0; }
-  
   .btnWa { max-width: 250px; }
 }
 </style>
