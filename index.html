@@ -27,13 +27,13 @@ body {
   overflow-x: hidden; 
 }
 
-/* --- ANIMAÇÃO DO GLOBO (Definição) --- */
+/* --- ANIMAÇÃO: ROTAÇÃO ANTI-HORÁRIA --- */
 @keyframes rodarGlobo {
   from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  to { transform: rotate(-360deg); } /* Sinal negativo faz girar para a esquerda/anti-horário */
 }
 
-/* --- ELEMENTO DO GLOBO (Padrão Mobile/Nobile - Sem Animação) --- */
+/* --- ELEMENTO DO GLOBO (Configuração Global: Mobile e Desktop) --- */
 .background-globe {
   position: absolute;
   top: -120px; 
@@ -47,9 +47,13 @@ body {
   opacity: 0.40; 
   z-index: -1;
   pointer-events: none;
+  
+  /* Ativado para todas as versões */
+  animation: rodarGlobo 120s linear infinite;
+  transform-origin: center center;
 }
 
-/* --- ESTRUTURA MOBILE (PADRÃO) --- */
+/* --- ESTRUTURA MOBILE --- */
 .avatarWrap {
   display: flex;
   justify-content: center;
@@ -109,7 +113,6 @@ body {
 
 .social a:hover { transform: scale(1.1); }
 
-/* Cartão Mobile */
 .card {
   background: #fff;
   border-radius: var(--radius);
@@ -136,11 +139,7 @@ body {
   padding-left: 8px; 
 }
 
-/* Botão WhatsApp Azul */
-.cta {
-  display:flex;
-  justify-content:center;
-}
+.cta { display:flex; justify-content:center; }
 .btnWa {
   width: 100%;
   max-width: 190px; 
@@ -210,18 +209,14 @@ footer {
   padding-bottom: 40px;
 }
 
-/* --- ALTERAÇÕES APENAS DESKTOP --- */
+/* --- AJUSTES APENAS DESKTOP --- */
 @media (min-width: 1024px) {
   .background-globe {
     background-size: 1100px; 
-    top: -300px; 
+    top: -50px; /* Posicionado mais abaixo para mostrar a curva superior */
     background-position: center center;
     opacity: 0.30;
     height: 1500px;
-    width: 100%;
-    /* ATIVAÇÃO DA ROTAÇÃO: 120 segundos para ser subtil */
-    animation: rodarGlobo 120s linear infinite;
-    transform-origin: center center;
   }
   
   .avatarWrap {
@@ -236,14 +231,14 @@ footer {
     background: #fff;
     border-radius: var(--radius);
     box-shadow: 0 15px 40px rgba(0,0,0,0.06); 
-    /* AJUSTE: Reduzi o último valor para 25px para encurtar o fundo */
+    /* Redução do espaço em branco inferior no card */
     padding: 50px 50px 25px; 
     position: relative;
     z-index: 1;
   }
 
   footer {
-    margin-top: 8px; 
+    margin-top: 10px; 
     padding-bottom: 0px; 
   }
   
