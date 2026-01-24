@@ -11,8 +11,9 @@
 <style>
 :root{
   --bg-site: #f9fafb; 
+  --text-main: #3c3c43;
   --text-soft: #55555a; 
-  --wa-green: #25D366;
+  --accent-blue: #5D8AA8; /* Cor azul premium consistente */
   --radius: 24px;
 }
 
@@ -26,8 +27,7 @@ body {
   overflow-x: hidden; 
 }
 
-/* --- VERSÃO MOBILE (BASE) --- */
-
+/* --- ELEMENTO DO GLOBO (Padrão Mobile/Nobile) --- */
 .background-globe {
   position: absolute;
   top: -120px; 
@@ -43,6 +43,7 @@ body {
   pointer-events: none;
 }
 
+/* --- ESTRUTURA MOBILE (PADRÃO) --- */
 .avatarWrap {
   display: flex;
   justify-content: center;
@@ -68,7 +69,7 @@ body {
   margin: 12px 0 2px;
   font-size: 26px;
   font-weight: 800;
-  color: var(--text-soft);
+  color: var(--text-main);
 }
 
 .role {
@@ -102,6 +103,7 @@ body {
 
 .social a:hover { transform: scale(1.1); }
 
+/* Cartão Mobile */
 .card {
   background: #fff;
   border-radius: var(--radius);
@@ -115,19 +117,20 @@ body {
   margin: 0;
   padding: 0;
   list-style: disc inside; 
-  font-size: 12.5px;
+  font-size: 11.2px; 
   color: #555;
   margin-bottom: 22px;
 }
 
 .bullets li { 
-  margin: 6px 0;
+  margin: 8px 0;
   white-space: nowrap; 
   overflow: hidden;
   text-overflow: ellipsis;
   padding-left: 8px; 
 }
 
+/* Botão WhatsApp Azul */
 .cta {
   display:flex;
   justify-content:center;
@@ -137,9 +140,8 @@ body {
   max-width: 190px; 
   padding: 11px;
   border-radius: 100px;
-  background: rgba(0,0,0,0.03); 
-  border: 1px solid rgba(0,0,0,0.01);
-  color: #1d1d1f;
+  background-color: var(--accent-blue);
+  color: #fff;
   font-weight: 600;
   font-size: 13px;
   text-decoration: none;
@@ -147,15 +149,12 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: background 0.2s;
+  transition: opacity 0.2s;
 }
 
-.btnWa:hover { background: rgba(0,0,0,0.06); }
+.btnWa:hover { opacity: 0.9; }
 
-.btnWa i {
-  color: var(--wa-green);
-  font-size: 16px;
-}
+.btnWa i { color: #fff; font-size: 16px; }
 
 .location-info {
   font-size: 10px; 
@@ -163,14 +162,9 @@ body {
   margin-top: 18px; 
   text-align: center;
   font-weight: 500;
-  letter-spacing: 0.2px;
 }
 
-.divider {
-  height: 1px;
-  background: #f1f1f1;
-  margin: 20px 0;
-}
+.divider { height: 1px; background: #f1f1f1; margin: 20px 0; }
 
 .featuredTitle {
   font-size: 10px;
@@ -192,18 +186,15 @@ body {
   margin-bottom: 8px;
 }
 
-.featuredItem span { 
-  font-size: 12px; 
-  font-weight: 400; 
-}
+.featuredItem span { font-size: 12px; font-weight: 400; }
 
 .featuredItem a {
   font-size: 11px;
   padding: 4px 12px;
   border-radius: 7px;
-  background: #f5f5f7;
   text-decoration: none;
-  color: #333;
+  color: var(--accent-blue);
+  border: 1px solid var(--accent-blue);
   font-weight: 600;
 }
 
@@ -215,20 +206,53 @@ footer {
   padding-bottom: 40px;
 }
 
-/* --- MELHORIA PARA DESKTOP (Ecrãs > 1024px) --- */
+/* --- ALTERAÇÕES APENAS DESKTOP --- */
 @media (min-width: 1024px) {
   .background-globe {
-    background-size: 850px; /* Impede que o globo estique demasiado */
-    top: -150px;
-    opacity: 0.20; /* Ligeiramente mais suave em ecrãs grandes */
+    background-size: 900px;    /* Slightly smaller so it doesn't fill the whole height */
+    top: -200px;                 /* Changed from -100px to 50px to push it DOWN */
+    background-position: center top;
+    opacity: 0.35;
+    height: 1200px;            /* Increased height to ensure it doesn't cut off at the bottom */
   }
-  .page {
-    max-width: 420px; /* Largura mais proporcional para desktop */
-    margin-top: 20px;
-  }
+  
   .avatarWrap {
-    padding-top: 60px;
+    padding-top: 90px; 
+    margin-bottom: -60px; 
+    position: relative;
+    z-index: 2;
   }
+
+  .page {
+    max-width: 430px; 
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.06); 
+    padding: 50px 50px 50px; 
+    border: 1px solid rgba(0,0,0,0.01);
+    position: relative;
+    z-index: 1;
+  }
+  /* ADICIONE ESTE BLOCO ABAIXO PARA ENCURTAR O ESPAÇO DO RODAPÉ */
+  footer {
+    margin-top: 10px;    /* Reduzido de 30px para 15px */
+    padding-bottom: 0px; /* Reduzido para aproximar o texto da borda */
+  }
+  
+  .name { font-size: 32px; margin-top: 10px; }
+  .role { font-size: 15px; margin-bottom: 30px; }
+  
+  .card {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+  }
+  
+  .bullets { font-size: 13px; }
+  .bullets li { margin: 10px 0; }
+  
+  .btnWa { max-width: 250px; }
 }
 </style>
 </head>
@@ -282,7 +306,7 @@ footer {
     </div>
   </section>
 
-  <footer>© 2026 Brunu Travel · v1.00</footer>
+  <footer>© 2026 Brunu Travel · v1.01</footer>
 </main>
 
 </body>
