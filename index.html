@@ -1,313 +1,180 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Brunu Travel</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brunu Travel - Updating...</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Tighter range of blues for a more cohesive oceanic/sky feel */
+            background: linear-gradient(-45deg, #041530, #0d326b, #0059ff, #009dff, #0d326b);
+            background-size: 400% 400%;
+            /* Sped up from 15s to 6s for more frequent variation */
+            animation: gradientBG 6s ease infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: white;
+            text-align: center;
+            overflow-x: hidden;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-<style>
-:root{
-  --bg-site: #f9fafb; 
-  --text-main: #3c3c43;
-  --text-soft: #55555a; 
-  --accent-blue: #5D8AA8; /* Cor azul premium consistente */
-  --radius: 24px;
-}
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.4);
+        }
 
-*{box-sizing:border-box;}
+        /* Glassmorphism card for the brand info */
+        .brand-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 25px 30px;
+            margin-bottom: 30px;
+            max-width: 90%;
+            width: 500px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
 
-body {
-  margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  background-color: var(--bg-site);
-  color: #444;
-  overflow-x: hidden; 
-}
+        .brand-card h1 {
+            font-size: 1.6rem;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
 
-/* --- ELEMENTO DO GLOBO (Padrão Mobile/Nobile) --- */
-.background-globe {
-  position: absolute;
-  top: -120px; 
-  left: 0;
-  right: 0;
-  height: 100%; 
-  background-image: url("earth_v2.png");
-  background-size: 130%; 
-  background-position: center top;
-  background-repeat: no-repeat;
-  opacity: 0.40; 
-  z-index: -1;
-  pointer-events: none;
-}
+        .brand-card h2 {
+            font-size: 1.2rem;
+            margin: 0 0 15px 0;
+            font-weight: 400;
+            color: #e0f7fa;
+        }
 
-/* --- ESTRUTURA MOBILE (PADRÃO) --- */
-.avatarWrap {
-  display: flex;
-  justify-content: center;
-  padding-top: 40px; 
-}
+        .brand-card p {
+            font-size: 0.95rem;
+            margin: 0;
+            font-weight: 300;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
 
-.avatar {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-}
+        .update-text {
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 35px;
+            padding: 0 20px;
+            animation: pulse 2.5s infinite;
+        }
 
-.page {
-  max-width: 380px;
-  margin: 0 auto;
-  padding: 0 20px 40px;
-  text-align: center;
-}
+        .sub-text {
+            font-size: 1.1rem;
+            font-weight: 400;
+            display: block;
+            margin-top: 8px;
+            opacity: 0.9;
+        }
 
-.name {
-  margin: 12px 0 2px;
-  font-size: 26px;
-  font-weight: 800;
-  color: var(--text-main);
-}
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
 
-.role {
-  font-size: 14px;
-  font-weight: 700;
-  color: #6e6e73; 
-  margin-bottom: 20px;
-}
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 320px;
+            padding: 0 20px;
+            box-sizing: border-box;
+            margin-bottom: 40px;
+        }
 
-.social {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 25px;
-}
+        .action-btn {
+            display: inline-block;
+            padding: 15px 25px;
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-decoration: none;
+            border: 2px solid white;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
 
-.social a {
-  width: 38px;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  color: #1d1d1f;
-  font-size: 18px;
-  text-decoration: none;
-  transition: transform 0.2s ease;
-}
+        .action-btn:hover {
+            background-color: white;
+            color: #1e3c72;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
 
-.social a:hover { transform: scale(1.1); }
-
-/* Cartão Mobile */
-.card {
-  background: #fff;
-  border-radius: var(--radius);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-  text-align: left;
-  padding: 22px 20px;
-  border: 1px solid rgba(0,0,0,0.01);
-}
-
-.bullets {
-  margin: 0;
-  padding: 0;
-  list-style: disc inside; 
-  font-size: 11.2px; 
-  color: #555;
-  margin-bottom: 22px;
-}
-
-.bullets li { 
-  margin: 8px 0;
-  white-space: nowrap; 
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding-left: 8px; 
-}
-
-/* Botão WhatsApp Azul */
-.cta {
-  display:flex;
-  justify-content:center;
-}
-.btnWa {
-  width: 100%;
-  max-width: 190px; 
-  padding: 11px;
-  border-radius: 100px;
-  background-color: var(--accent-blue);
-  color: #fff;
-  font-weight: 600;
-  font-size: 13px;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: opacity 0.2s;
-}
-
-.btnWa:hover { opacity: 0.9; }
-
-.btnWa i { color: #fff; font-size: 16px; }
-
-.location-info {
-  font-size: 10px; 
-  color: #999; 
-  margin-top: 18px; 
-  text-align: center;
-  font-weight: 500;
-}
-
-.divider { height: 1px; background: #f1f1f1; margin: 20px 0; }
-
-.featuredTitle {
-  font-size: 10px;
-  letter-spacing: 0.8px;
-  text-transform: none; 
-  color: #999;
-  font-weight: 700;
-  margin-bottom: 12px;
-}
-
-.featuredItem {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 14px;
-  border-radius: 14px;
-  background: #fff;
-  border: 1px solid #f2f2f2;
-  margin-bottom: 8px;
-}
-
-.featuredItem span { font-size: 12px; font-weight: 400; }
-
-.featuredItem a {
-  font-size: 11px;
-  padding: 4px 12px;
-  border-radius: 7px;
-  text-decoration: none;
-  color: var(--accent-blue);
-  border: 1px solid var(--accent-blue);
-  font-weight: 600;
-}
-
-footer {
-  margin-top: 30px;
-  font-size: 10px;
-  color: #bbb;
-  text-align: center;
-  padding-bottom: 40px;
-}
-
-/* --- ALTERAÇÕES APENAS DESKTOP --- */
-@media (min-width: 1024px) {
-  .background-globe {
-    background-size: 900px;    /* Slightly smaller so it doesn't fill the whole height */
-    top: -200px;                 /* Changed from -100px to 50px to push it DOWN */
-    background-position: center top;
-    opacity: 0.35;
-    height: 1200px;            /* Increased height to ensure it doesn't cut off at the bottom */
-  }
-  
-  .avatarWrap {
-    padding-top: 90px; 
-    margin-bottom: -60px; 
-    position: relative;
-    z-index: 2;
-  }
-
-  .page {
-    max-width: 430px; 
-    background: #fff;
-    border-radius: var(--radius);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.06); 
-    padding: 50px 50px 50px; 
-    border: 1px solid rgba(0,0,0,0.01);
-    position: relative;
-    z-index: 1;
-  }
-  /* ADICIONE ESTE BLOCO ABAIXO PARA ENCURTAR O ESPAÇO DO RODAPÉ */
-  footer {
-    margin-top: 10px;    /* Reduzido de 30px para 15px */
-    padding-bottom: 0px; /* Reduzido para aproximar o texto da borda */
-  }
-  
-  .name { font-size: 32px; margin-top: 10px; }
-  .role { font-size: 15px; margin-bottom: 30px; }
-  
-  .card {
-    background: transparent;
-    box-shadow: none;
-    border: none;
-    padding: 0;
-  }
-  
-  .bullets { font-size: 13px; }
-  .bullets li { margin: 10px 0; }
-  
-  .btnWa { max-width: 250px; }
-}
-</style>
+        .footer {
+            font-size: 0.9rem;
+            font-weight: 400;
+            opacity: 0.7;
+            letter-spacing: 1px;
+            padding-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="background-globe"></div>
-
-<div class="avatarWrap">
-  <img src="profile.jpg" class="avatar" alt="Brunu Travel">
-</div>
-
-<main class="page">
-  <div class="name">Brunu Travel</div>
-  <div class="role">Travel Leader & Content Creator</div>
-
-  <nav class="social">
-    <a href="https://www.instagram.com/brunutravel" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.facebook.com/profile.php?id=61586558676697" target="_blank"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.tiktok.com/@brunu_uncut_travel" target="_blank"><i class="fab fa-tiktok"></i></a>
-    <a href="https://www.youtube.com/@brunu_uncut_travel" target="_blank"><i class="fab fa-youtube"></i></a>
-  </nav>
-
-  <section class="card">
-    <ul class="bullets">
-      <li>Planned and led trips for groups & families</li>
-      <li>Content creation for Products & Experiences</li>
-      <li>Background in Tech Product Management</li>
-    </ul>
-
-    <div class="cta">
-      <a class="btnWa" href="https://wa.me/351963623430" target="_blank">
-        <i class="fab fa-whatsapp"></i> WhatsApp
-      </a>
-    </div>
+    <div class="logo">Brunu Travel</div>
     
-    <div class="location-info">Based in Portugal • Available for trips in Europe and Asia</div>
-
-    <div class="divider"></div>
-
-    <div class="featuredTitle">Collaborations</div>
-    <div class="featured">
-      <div class="featuredItem">
-        <span>Riia Recursos Humanos</span>
-        <a href="https://instagram.com/riia.rh" target="_blank">Link</a>
-      </div>
-      <div class="featuredItem">
-        <span>Viagens Rainho</span>
-        <a href="https://instagram.com/viagens.rainho" target="_blank">Link</a>
-      </div>
+    <div class="brand-card">
+        <h1>Viagens de grupo e grupos privados</h1>
+        <h2>Nós lideramos. Tu aproveitas.</h2>
+        <p>Europa • Ásia • Norte de África • Américas</p>
     </div>
-  </section>
 
-  <footer>© 2026 Brunu Travel · v1.01</footer>
-</main>
+    <div class="update-text">
+        We are packing our bags for a new adventure! 🧳
+        <span class="sub-text">The website is getting a fresh update. Check back tomorrow! ✈️</span>
+    </div>
+
+    <div class="button-container">
+        <a href="https://www.brunutravel.pt/bio" class="action-btn">Site da bio</a>
+        <a href="https://www.instagram.com/brunutravel" class="action-btn">Check my Instagram</a>
+        <a href="https://wa.me/351963623430" class="action-btn">Contact me on WhatsApp</a>
+    </div>
+
+    <div class="footer">
+        <a href="mailto:info@brunutravel.pt">info@brunutravel.pt</a><br>
+        Last updated: March 3, 2025 23:30h
+    </div>
 
 </body>
 </html>
