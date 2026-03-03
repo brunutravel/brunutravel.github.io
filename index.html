@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brunu Travel - Updating...</title>
+    <title>Brunu Travel - Em Atualização...</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
@@ -34,16 +34,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 30px;
+            gap: 25px;
             margin-top: 40px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             max-width: 90%;
             width: 800px;
             text-align: left;
         }
 
         .main-logo {
-            width: 140px;
+            width: 120px;
             height: auto;
             flex-shrink: 0;
             background: transparent;
@@ -54,8 +54,9 @@
             flex-direction: column;
         }
 
+        /* Scaled down by 30% */
         .brand-title {
-            font-size: 2.5rem;
+            font-size: 1.75rem;
             font-weight: 800;
             letter-spacing: 2px;
             margin: 0 0 5px 0;
@@ -63,33 +64,37 @@
             text-shadow: 2px 4px 10px rgba(0,0,0,0.4);
         }
 
+        /* Scaled down by 30% */
         .brand-subtitle {
-            font-size: 1.6rem;
-            margin: 0 0 10px 0;
-            font-weight: 700;
-            white-space: nowrap; /* Forces text to stay on a single line */
-        }
-
-        .brand-slogan {
-            font-size: 1.2rem;
-            margin: 0 0 10px 0;
-            font-weight: 400;
-            color: #e0f7fa;
-        }
-
-        .brand-regions {
-            font-size: 1rem;
+            font-size: 1.15rem;
             margin: 0;
-            font-weight: 300;
-            letter-spacing: 1px;
-            opacity: 0.9;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .update-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 35px;
+            padding: 0 20px;
+        }
+
+        .update-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #00c6ff;
+            /* Smooth, continuous spinning animation */
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
         }
 
         .update-text {
             font-size: 1.3rem;
             font-weight: 300;
-            margin-bottom: 35px;
-            padding: 0 20px;
             animation: pulse 2.5s infinite;
             text-align: center;
         }
@@ -176,7 +181,6 @@
             margin-bottom: 5px;
         }
 
-        /* Mobile adjustment to stack the layout if the screen is too small */
         @media (max-width: 768px) {
             .brand-container {
                 flex-direction: column;
@@ -184,8 +188,8 @@
                 gap: 15px;
             }
             .brand-subtitle {
-                white-space: normal; /* Allows wrapping on tiny screens to prevent horizontal scrolling */
-                font-size: 1.4rem;
+                white-space: normal;
+                font-size: 1rem;
             }
         }
     </style>
@@ -197,14 +201,15 @@
         <div class="brand-content">
             <h1 class="brand-title">Brunu Travel</h1>
             <h2 class="brand-subtitle">Viagens de grupo e grupos privados</h2>
-            <p class="brand-slogan">Nós lideramos. Tu aproveitas.</p>
-            <p class="brand-regions">Europa • Ásia • Norte de África • Américas</p>
         </div>
     </div>
 
-    <div class="update-text">
-        We are packing our bags for a new adventure! 🧳
-        <span class="sub-text">The website is getting a fresh update. Check back tomorrow! ✈️</span>
+    <div class="update-section">
+        <i class="fa-solid fa-arrows-rotate update-icon"></i>
+        <div class="update-text">
+            Estamos a fazer as malas para uma nova aventura! 🧳
+            <span class="sub-text">O site está a receber uma atualização. Volta amanhã! ✈️</span>
+        </div>
     </div>
 
     <div class="button-container">
@@ -212,10 +217,10 @@
             <i class="fa-solid fa-link"></i> Site da bio
         </a>
         <a href="https://www.instagram.com/brunutravel" class="action-btn">
-            <i class="fa-brands fa-instagram"></i> Check my Instagram
+            <i class="fa-brands fa-instagram"></i> Visita o meu Instagram
         </a>
         <a href="https://wa.me/351963623430" class="action-btn">
-            <i class="fa-brands fa-whatsapp"></i> Contact me on WhatsApp
+            <i class="fa-brands fa-whatsapp"></i> Contacta-me no WhatsApp
         </a>
     </div>
 
@@ -223,7 +228,7 @@
         <div class="footer-contact">
             <a href="mailto:info@brunutravel.pt">info@brunutravel.pt</a> &nbsp;|&nbsp; (+351) 963 623 430
         </div>
-        Last updated: March 3, 2025 23:30h
+        Última atualização: 3 de Março de 2025 às 17:00h
     </div>
 
 </body>
