@@ -1,617 +1,692 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Brunu Travel • Bio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brunu Travel • Bio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles & Animated Background */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(-45deg, #041530, #0d326b, #0059ff, #009dff, #0d326b);
+            background-size: 400% 400%;
+            animation: gradientBG 6s ease infinite;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-  <style>
-    :root{
-      --bg:#ffffff;
-      --text:#102A44;
-      --muted:#7B8694;
-      --line:#E6E8EE;
-      --btn:#4078BD;     /* WhatsApp button */
-      --btnText:#ffffff;
+        /* Desktop Grid Layout */
+        .layout-container {
+            display: flex;
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
 
-      --shadow: 0 18px 60px rgba(16,42,68,.10);
-      --shadowSoft: 0 10px 28px rgba(16,42,68,.08);
-      --max: 1120px;
-    }
+        /* Left Column - Brand Info (Web Only) */
+        .left-column {
+            flex: 1.1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
 
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:Montserrat, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:var(--bg);
-      color:var(--text);
-    }
-    a{ color:inherit; text-decoration:none; }
+        .brand-logo {
+            width: 160px;
+            height: auto;
+            margin-bottom: 30px;
+        }
 
-    .wrap{ max-width:var(--max); margin:0 auto; padding:26px 18px 44px; }
+        .brand-text-lines p {
+            margin: 0 0 10px 0;
+            display: block;
+        }
 
-    .grid{
-      display:grid;
-      gap:28px;
-      align-items:center;
-    }
+        .brand-text-lines .line-1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
 
-    @media (min-width: 980px){
-      .grid{
-        grid-template-columns: 1.05fr .95fr;
-        min-height: calc(100vh - 90px);
-      }
-    }
+        .brand-text-lines .line-2 {
+            font-size: 1.4rem;
+            font-weight: 400;
+            opacity: 0.95;
+        }
 
-    /* Mobile: só o telemóvel */
-    @media (max-width: 979px){
-      .brandBlock{ display:none; }
-      .wrap{ padding:16px 12px 24px; }
-      .phoneWrap{ padding:0; }
-    }
+        .brand-text-lines .line-3 {
+            font-size: 1.1rem;
+            font-weight: 300;
+            opacity: 0.8;
+            margin-bottom: 35px;
+        }
 
-    /* LEFT (desktop) */
-    .brandBlock{ padding:10px 6px; max-width: 560px; }
+        .left-divider {
+            width: 100%;
+            max-width: 400px;
+            height: 1px;
+            background: rgba(255,255,255,0.2);
+            margin-bottom: 25px;
+        }
 
-    .logoRow{ display:flex; align-items:center; gap:14px; margin-bottom:14px; }
-    .logoMark{
-      width:168px; height:168px;
-      border:none;
-      background:transparent;
-      display:grid;
-      place-items:center;
-    }
-    .logoMark img{ width:168px; height:168px; object-fit:contain; display:block; }
+        .brand-contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 1.25rem; /* Larger font size as requested */
+            opacity: 0.95;
+            align-items: center;
+            font-weight: 500;
+        }
 
-    /* Hierarquia pedida (4) */
-    .headline{
-      font-weight:700;
-      font-size:30px;
-      letter-spacing:-.02em;
-      margin:8px 0 10px;
-      color:var(--text);
-      max-width: 520px;
-    }
-    .subheadline{
-      font-weight:400;
-      font-size:22px;
-      letter-spacing:-.01em;
-      margin:0 0 14px;
-      color:var(--text);
-      max-width: 520px;
-    }
-    .regions{
-      font-weight:500;
-      font-size:16px;
-      color:rgba(16,42,68,.78);
-      margin:0 0 14px;
-      max-width:520px;
-      line-height:1.35;
-    }
+        .brand-contact a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
 
-    /* Contacts (desktop) */
-    .contactBlock{
-      margin:18px 0 0;
-      padding-top:16px;
-      border-top:1px solid var(--line);
-      max-width:520px;
-    }
-    .contactRow{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-      color:rgba(16,42,68,.62);
-      font-size:14px;
-      line-height:1.2;
-    }
-    .contactLink{
-      color:rgba(16,42,68,.62);
-    }
-    .contactLink:hover{
-      text-decoration:underline;
-      text-underline-offset:3px;
-    }
-    .dot{ opacity:.55; }
-    .contactText{ color:rgba(16,42,68,.62); }
+        .brand-contact a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
 
-    /* Social icons – mais “reais” */
-    .icons, .footerIcons{
-      display:flex;
-      gap:10px;
-      margin-top:14px;
-    }
-    .iconBtn{
-      width:34px; height:34px;
-      border-radius:11px;
-      border:1px solid rgba(16,42,68,.10);
-      background:#fff;
-      display:grid;
-      place-items:center;
-      box-shadow:none;
-    }
-    .iconBtn svg{ width:18px; height:18px; }
+        /* Right Column - Interactive Bio Links Area */
+        .right-column {
+            flex: 0.9;
+            width: 100%;
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 35px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+        }
 
-    .iconMono svg{
-      fill:#7B8694;
-    }
+        /* Profile Header */
+        .profile-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.4);
+            margin-bottom: 15px;
+            object-fit: cover;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
 
-    .iconIG{
-      border:none;
-      background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
-    }
-    .iconIG svg{ fill:#fff; }
+        .profile-name {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin: 0 0 25px 0;
+            letter-spacing: 1px;
+            text-align: center;
+        }
 
-    /* RIGHT – phone preview (3: remove notch component) */
-    .phoneWrap{ display:flex; justify-content:center; padding:10px 0; }
-    .phone{
-      width:min(390px, 94vw);
-      border-radius:44px;
-      border:1px solid #E7E7EA;
-      box-shadow: var(--shadow);
-      background:#fff;
-      padding:16px;
-      position:relative;
-    }
-    .screen{ padding:18px 16px 16px; }
+        /* Mobile Brand Info (Hidden on Desktop) */
+        .mobile-brand-info {
+            display: none;
+            text-align: center;
+            margin-bottom: 25px;
+            width: 100%;
+        }
 
-    /* Phone header (minimal) */
-    .screenTop{
-      text-align:center;
-      padding-top:6px;
-      margin-bottom:10px;
-    }
-    .screenTitle{
-      font-weight:700;
-      font-size:20px;
-      letter-spacing:-.01em;
-      margin:0;
-    }
+        .mobile-brand-info p {
+            margin: 0 0 8px 0;
+            display: block;
+            opacity: 0.9;
+        }
 
-    /* These lines should be visible ONLY on mobile (4) */
-    .mobileOnly{ display:none; }
-    @media (max-width: 979px){
-      .mobileOnly{ display:block; }
-    }
-    .screenSub{
-      margin:8px 0 0;
-      font-size:14px;
-      color:rgba(16,42,68,.72);
-      font-weight:600;
-    }
-    .screenTag{
-      margin:6px 0 0;
-      font-size:14px;
-      color:rgba(16,42,68,.70);
-      font-style:italic;
-      font-weight:500;
-    }
-    .screenRegions{
-      margin:8px 0 0;
-      font-size:13px;
-      color:rgba(16,42,68,.62);
-      font-weight:500;
-    }
+        .mobile-brand-info .line-1 {
+            font-weight: 700;
+            font-size: 1.15rem;
+        }
 
-    /* Avatar */
-    .avatar{
-      width:112px;
-      height:112px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      margin:14px auto 12px;
-      background:#fff;
-      display:grid;
-      place-items:center;
-      overflow:hidden;
-    }
-    .avatar img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      object-position:center;
-      display:block;
-    }
+        .mobile-brand-info .line-2 {
+            font-size: 1rem;
+        }
 
-    /* Founder block */
-    .founderLine{
-      font-weight:700;
-      margin:6px 0 6px;
-      font-size:15px;
-      text-align:left;
-    }
-    .bioTeaser{
-      margin:0 0 10px;
-      color:rgba(16,42,68,.78);
-      font-size:14px;
-      line-height:1.45;
-      text-align:left;
-    }
-    .readMore{
-      display:inline-block;
-      margin-top:6px;
-      font-weight:600;
-      font-size:13px;
-      color:var(--btn);
-      text-decoration:none;
-      cursor:pointer;
-    }
-    .readMore:hover{ text-decoration:underline; text-underline-offset:3px; }
+        .mobile-brand-info .line-3 {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
 
-    .divider{ height:1px; background:var(--line); margin:14px 0; }
+        /* Button Hierarchy - Pill Shaped */
+        .btn-group {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
 
-    /* Buttons — new component style (2) */
-    .btn{
-      width:100%;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      border-radius:18px;
-      padding:14px 14px;
-      border:1px solid rgba(16,42,68,.10);
-      background:#fff;
-      box-shadow: var(--shadowSoft);
-      font-weight:600;
-      font-size:15px;
-      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
-    }
-    .btn:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 14px 34px rgba(16,42,68,.10);
-      border-color: rgba(16,42,68,.14);
-    }
+        .action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 25px;
+            background-color: rgba(255, 255, 255, 0.12);
+            color: white;
+            text-decoration: none;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+            outline: none;
+        }
 
-    .btnPrimary{
-      background:var(--btn);
-      border-color: rgba(0,0,0,.06);
-      color:var(--btnText);
-      box-shadow: 0 14px 34px rgba(64,120,189,.18);
-    }
-    .btnPrimary:hover{
-      box-shadow: 0 18px 44px rgba(64,120,189,.22);
-    }
+        .action-btn:hover {
+            background-color: white;
+            color: #0d326b;
+            transform: translateY(-4px) scale(1.02);
+            border-color: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
 
-    .btnLeft{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width:0;
-    }
-    .btnLeft span{
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
+        .btn-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            min-width: 0;
+        }
+        
+        .btn-left span {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
-    .arrowPill{
-      width:32px; height:32px;
-      border-radius:12px;
-      display:grid;
-      place-items:center;
-      background: rgba(16,42,68,.06);
-      color: rgba(16,42,68,.70);
-      font-weight:800;
-      flex:0 0 auto;
-    }
-    .btnPrimary .arrowPill{
-      background: rgba(255,255,255,.18);
-      color: #fff;
-    }
+        .btn-icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
 
-    .btn + .btn{ margin-top:10px; }
+        .btn-arrow {
+            font-size: 1.2rem;
+            font-weight: bold;
+            opacity: 0.7;
+            background: rgba(255, 255, 255, 0.15);
+            width: 30px;
+            height: 30px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
 
-    /* Section title */
-    .secTitle{
-      margin:18px 0 10px;
-      color:rgba(16,42,68,.62);
-      font-weight:700;
-      font-size:12px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      text-align:left;
-    }
+        .action-btn:hover .btn-icon, 
+        .action-btn:hover .btn-arrow {
+            background: rgba(13, 50, 107, 0.1);
+            color: #0d326b;
+        }
 
-    /* Mention links */
-    .miniLink{
-      width:100%;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      border-radius:16px;
-      padding:12px 14px;
-      border:1px solid rgba(16,42,68,.10);
-      background:#fff;
-      font-weight:600;
-      font-size:14px;
-    }
-    .miniLink + .miniLink{ margin-top:8px; }
+        /* Section Titles for Mentions */
+        .sec-title {
+            width: 100%;
+            text-align: left;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            opacity: 0.8;
+            padding-left: 10px;
+        }
 
-    /* Mobile footer inside phone (as specified) */
-    .footerLine{
-      display:none;
-      margin-top:14px;
-      padding-top:12px;
-      border-top:1px solid var(--line);
-      color:rgba(16,42,68,.60);
-      font-size:12.5px;
-      text-align:center;
-    }
-    .footerLine a{
-      color:rgba(16,42,68,.60);
-      text-decoration:none;
-    }
-    .footerLine a:hover{ text-decoration:underline; text-underline-offset:3px; }
+        /* Social Media Circles */
+        .social-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 10px 0 5px 0;
+            width: 100%;
+        }
 
-    .footerRow1{
-      display:flex;
-      justify-content:center;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-bottom:8px;
-    }
-    .footerRow2{
-      margin-bottom:10px;
-      font-weight:600;
-      color:rgba(16,42,68,.62);
-    }
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+            display: grid;
+            place-items: center;
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
 
-    @media (max-width: 979px){
-      .footerLine{ display:block; }
-      .footerIcons{ justify-content:center; margin-top:10px; }
-    }
+        .social-btn:hover {
+            background: white;
+            color: #0d326b;
+            transform: translateY(-4px) scale(1.05);
+            border-color: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
 
-    /* Popup modal */
-    .modalOverlay{
-      position:fixed;
-      inset:0;
-      background: rgba(16,42,68,.35);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:18px;
-      z-index:999;
-    }
-    .modalOverlay.open{ display:flex; }
-    .modal{
-      width:min(520px, 96vw);
-      border-radius:18px;
-      background:#fff;
-      border:1px solid rgba(16,42,68,.10);
-      box-shadow: 0 24px 80px rgba(16,42,68,.22);
-      padding:18px 18px 16px;
-      font-family:Montserrat, sans-serif;
-    }
-    .modalHeader{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:10px;
-    }
-    .modalTitle{
-      font-weight:800;
-      font-size:14px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      color:rgba(16,42,68,.62);
-      margin:0;
-    }
-    .modalClose{
-      border:none;
-      background: rgba(16,42,68,.06);
-      border-radius:12px;
-      width:36px; height:36px;
-      cursor:pointer;
-      font-weight:800;
-      color:rgba(16,42,68,.65);
-    }
-    .modalText{
-      margin:0;
-      color:rgba(16,42,68,.82);
-      font-size:14px;
-      line-height:1.55;
-    }
-  </style>
+        /* Handle "@brunutravel" */
+        .social-handle {
+            font-size: 1.05rem;
+            font-weight: 600;
+            opacity: 0.95;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Mobile Signature Info */
+        .mobile-signature {
+            display: none;
+            text-align: center;
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 1.8;
+            margin-top: 5px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 15px;
+            width: 100%;
+        }
+
+        .mobile-signature a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .mobile-signature a:hover {
+            text-decoration: underline;
+        }
+
+        /* Pop-up Modal Styling */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(4, 21, 48, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            color: white;
+            overflow: hidden;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        .close-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            display: grid;
+            place-items: center;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .modal-content-scroll {
+            padding: 25px;
+            overflow-y: auto;
+            text-align: left;
+        }
+
+        .modal-content-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .modal-content-scroll::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+
+        .modal-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            object-fit: cover;
+            float: left;
+            margin: 0 20px 10px 0;
+        }
+
+        .modal-content-scroll h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 20px 0 10px 0;
+            color: #e0f7fa;
+        }
+        
+        .modal-content-scroll h3:first-of-type {
+            margin-top: 0;
+            color: white;
+            font-size: 1.15rem;
+            line-height: 1.4;
+        }
+
+        .modal-content-scroll p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0 0 15px 0;
+            font-weight: 300;
+            opacity: 0.95;
+            clear: none;
+        }
+
+        .modal-content-scroll ul {
+            margin: 0 0 15px 0;
+            padding-left: 20px;
+            font-size: 0.95rem;
+            font-weight: 300;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .modal-content-scroll li {
+            margin-bottom: 6px;
+        }
+
+        .values-text {
+            font-weight: 600 !important;
+            font-style: italic;
+            opacity: 1 !important;
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /* Mobile Adjustments (Triggers below 800px) */
+        @media (max-width: 800px) {
+            .layout-container {
+                padding: 20px 15px;
+                min-height: auto;
+                gap: 0;
+            }
+            .left-column {
+                display: none; /* Hide Desktop Brand Info on small screens */
+            }
+            .right-column {
+                border: none;
+                box-shadow: none;
+                background: transparent;
+                backdrop-filter: none;
+                padding: 20px 10px;
+            }
+            .profile-name {
+                margin-bottom: 10px;
+            }
+            .mobile-brand-info {
+                display: block; /* Show Mobile Brand Info */
+            }
+            .mobile-signature {
+                display: block; /* Show Mobile Signature */
+            }
+            
+            /* Shrink buttons for mobile to prevent wrapping */
+            .action-btn {
+                font-size: 0.85rem;
+                padding: 12px 18px;
+            }
+            .btn-left {
+                gap: 10px;
+            }
+            .btn-icon {
+                width: 28px;
+                height: 28px;
+                font-size: 0.95rem;
+            }
+            .btn-arrow {
+                width: 26px;
+                height: 26px;
+                font-size: 1.05rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <div class="wrap">
-    <div class="grid">
 
-      <!-- LEFT (desktop only) -->
-      <section class="brandBlock" aria-label="Brunu Travel">
-        <div class="logoRow">
-          <div class="logoMark" aria-label="Logo Brunu Travel">
-            <img src="logo-brunutravel.png" alt="Brunu Travel">
-          </div>
+    <div class="layout-container">
+        
+        <div class="left-column">
+            <img src="logo.png" alt="Brunu Travel" class="brand-logo">
+            
+            <div class="brand-text-lines">
+                <p class="line-1">Viagens de grupo e grupos privados</p>
+                <p class="line-2">Nós lideramos. Tu aproveitas.</p>
+                <p class="line-3">Europa • Ásia • Norte de África • Américas</p>
+            </div>
+            
+            <div class="left-divider"></div>
+            
+            <div class="brand-contact">
+                <a href="mailto:info@brunutravel.pt">info@brunutravel.pt</a> 
+                <span>•</span>
+                <a href="https://www.brunutravel.pt" target="_blank">www.brunutravel.pt</a>
+                <span>•</span>
+                <span>(+351) 963 623 430</span>
+            </div>
         </div>
 
-        <h1 class="headline">Viagens de grupo e grupos privados</h1>
-        <p class="subheadline">Nós lideramos. Tu aproveitas.</p>
-        <p class="regions">Europa • Ásia • Norte de África • Américas</p>
+        <div class="right-column">
+            
+            <img src="profile.jpg" alt="Bruno Oliveira" class="profile-photo">
+            <h1 class="profile-name">Brunu Travel</h1>
 
-        <div class="contactBlock">
-          <div class="contactRow">
-            <a class="contactLink" href="mailto:info@brunutravel.pt">info@brunutravel.pt</a>
-            <span class="dot">•</span>
-            <a class="contactLink" href="https://www.brunutravel.pt" target="_blank" rel="noreferrer">www.brunutravel.pt</a>
-            <span class="dot">•</span>
-            <span class="contactText">(+351) 963 623 430</span>
-          </div>
+            <div class="mobile-brand-info">
+                <p class="line-1">Viagens de grupo e grupos privados</p>
+                <p class="line-2">Nós lideramos. Tu aproveitas.</p>
+                <p class="line-3">Europa • Ásia • Norte de África • Américas</p>
+            </div>
 
-          <div class="icons" aria-label="Redes sociais">
-            <!-- Instagram -->
-            <a class="iconBtn iconIG" href="https://www.instagram.com/brunutravel" target="_blank" rel="noreferrer" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 6.2A3.8 3.8 0 1 0 12 19.8 3.8 3.8 0 0 0 12 8.2zm7.2-.9a1 1 0 1 0-1 1 1 1 0 0 0 1-1z"/>
-              </svg>
-            </a>
+            <div class="btn-group">
+                <a href="https://wa.me/351963623430?text=Ol%C3%A1%20Bruno!%20%F0%9F%91%8B" target="_blank" class="action-btn">
+                    <div class="btn-left">
+                        <div class="btn-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                        <span>WhatsApp — Fala comigo</span>
+                    </div>
+                    <div class="btn-arrow">›</div>
+                </a>
 
-            <!-- Facebook -->
-            <a class="iconBtn" href="https://www.facebook.com/profile.php?id=61586558676697" target="_blank" rel="noreferrer" aria-label="Facebook">
-              <svg class="iconMono" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M14 8h2V5h-2c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h2.2l.8-3H13V9c0-.6.4-1 1-1z"/>
-              </svg>
-            </a>
+                <a href="javascript:void(0)" id="openAboutBtn" class="action-btn">
+                    <div class="btn-left">
+                        <div class="btn-icon"><i class="fa-solid fa-address-card"></i></div>
+                        <span>Quem somos</span>
+                    </div>
+                    <div class="btn-arrow">›</div>
+                </a>
 
-            <!-- YouTube -->
-            <a class="iconBtn" href="https://www.youtube.com/@brunu_uncut_travel" target="_blank" rel="noreferrer" aria-label="YouTube">
-              <svg class="iconMono" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31.7 31.7 0 0 0 2 12a31.7 31.7 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31.7 31.7 0 0 0 22 12a31.7 31.7 0 0 0-.4-4.8zM10 15.5v-7l6 3.5-6 3.5z"/>
-              </svg>
-            </a>
+                <a href="https://www.brunutravel.pt" target="_blank" class="action-btn">
+                    <div class="btn-left">
+                        <div class="btn-icon"><i class="fa-solid fa-users"></i></div>
+                        <span>Viagens de Grupo</span>
+                    </div>
+                    <div class="btn-arrow">›</div>
+                </a>
 
-            <!-- TikTok -->
-            <a class="iconBtn" href="https://www.tiktok.com/@brunu_uncut_travel" target="_blank" rel="noreferrer" aria-label="TikTok">
-              <svg class="iconMono" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M16 3c.6 3.4 2.6 5.4 6 6v3.1c-2.2-.1-4-.7-6-2v5.6c0 4-3.2 7.3-7.3 7.3A7.3 7.3 0 0 1 1.4 13c0-3.8 3-6.9 6.8-7.2v3.4a3.6 3.6 0 1 0 4.1 3.6V3h3.7z"/>
-              </svg>
-            </a>
-          </div>
+                <a href="https://www.brunutravel.pt" target="_blank" class="action-btn">
+                    <div class="btn-left">
+                        <div class="btn-icon"><i class="fa-solid fa-book-open"></i></div>
+                        <span>Guias e Dicas</span>
+                    </div>
+                    <div class="btn-arrow">›</div>
+                </a>
+            </div>
+
+            <div class="sec-title">Mencionado nas redes sociais</div>
+            <div class="btn-group" style="margin-bottom: 20px;">
+                <a href="https://instagram.com/riia.rh" target="_blank" class="action-btn">
+                    <div class="btn-left">
+                        <div class="btn-icon"><i class="fa-brands fa-instagram"></i></div>
+                        <span>Riia Recursos Humanos</span>
+                    </div>
+                    <div class="btn-arrow">›</div>
+                </a>
+
+                <a href="https://instagram.com/viagens.rainho" target="_blank" class="action-btn">
+                    <div class="btn-left">
+                        <div class="btn-icon"><i class="fa-brands fa-instagram"></i></div>
+                        <span>Viagens Rainho</span>
+                    </div>
+                    <div class="btn-arrow">›</div>
+                </a>
+            </div>
+
+            <div class="social-group">
+                <a href="https://www.instagram.com/brunutravel" target="_blank" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61586558676697" target="_blank" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.youtube.com/@brunu_uncut_travel" target="_blank" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.tiktok.com/@brunu_uncut_travel" target="_blank" class="social-btn"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+            <div class="social-handle">@brunutravel</div>
+
+            <div class="mobile-signature">
+                <a href="mailto:info@brunutravel.pt">info@brunutravel.pt</a><br>
+                <a href="https://www.brunutravel.pt" target="_blank">www.brunutravel.pt</a><br>
+                <span>(+351) 963 623 430</span>
+            </div>
+
         </div>
-      </section>
-
-      <!-- RIGHT (always visible, mobile-only shows this only) -->
-      <aside class="phoneWrap" aria-label="Pré-visualização mobile">
-        <div class="phone">
-          <div class="screen">
-
-            <div class="screenTop">
-              <p class="screenTitle">Brunu Travel</p>
-
-              <!-- ONLY on mobile: show these lines -->
-              <p class="screenSub mobileOnly">Viagens de Grupo e Grupos Privados</p>
-              <p class="screenTag mobileOnly">Nós lideramos. Tu aproveitas.</p>
-              <p class="screenRegions mobileOnly">Europa • Ásia • Norte de África • Américas</p>
-            </div>
-
-            <div class="avatar">
-              <img src="profile.jpg" alt="Foto de Bruno Oliveira">
-            </div>
-
-            <div class="founderLine">Fundador: Bruno Oliveira</div>
-            <p class="bioTeaser">
-              Depois de 18 anos como gestor de produto em tecnologia e muitas viagens, criei a Brunu Travel para transformar viagens em experiências autênticas e bem planeadas.
-              <br>
-              <a class="readMore" id="openModal">Ler mais</a>
-            </p>
-
-            <div class="divider"></div>
-
-            <a class="btn btnPrimary" href="https://wa.me/351963623430?text=Ol%C3%A1%20Bruno!%20%F0%9F%91%8B" target="_blank" rel="noreferrer">
-              <span class="btnLeft"><span>WhatsApp — Fala comigo</span></span>
-              <span class="arrowPill">›</span>
-            </a>
-
-            <a class="btn" href="https://www.brunutravel.pt" target="_blank" rel="noreferrer">
-              <span class="btnLeft"><span>Viagens de Grupo</span></span>
-              <span class="arrowPill">›</span>
-            </a>
-
-            <a class="btn" href="https://www.brunutravel.pt" target="_blank" rel="noreferrer">
-              <span class="btnLeft"><span>Guias e Dicas</span></span>
-              <span class="arrowPill">›</span>
-            </a>
-
-            <div class="secTitle">Mencionado nas redes sociais</div>
-
-            <a class="miniLink" href="https://instagram.com/riia.rh" target="_blank" rel="noreferrer">
-              <span>Riia Recursos Humanos</span>
-              <span class="arrowPill" style="width:28px;height:28px;border-radius:10px;">›</span>
-            </a>
-
-            <a class="miniLink" href="https://instagram.com/viagens.rainho" target="_blank" rel="noreferrer">
-              <span>Viagens Rainho</span>
-              <span class="arrowPill" style="width:28px;height:28px;border-radius:10px;">›</span>
-            </a>
-
-            <!-- MOBILE footer (only shows under 980px) -->
-            <div class="footerLine">
-              <div class="footerRow1">
-                <a href="https://www.brunutravel.pt" target="_blank" rel="noreferrer">www.brunutravel.pt</a>
-                <span class="dot">•</span>
-                <a href="mailto:info@brunutravel.pt">info@brunutravel.pt</a>
-              </div>
-              <div class="footerRow2">(+351) 963 623 430</div>
-
-              <div class="footerIcons" aria-label="Redes sociais">
-                <a class="iconBtn iconIG" href="https://www.instagram.com/brunutravel" target="_blank" rel="noreferrer" aria-label="Instagram">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 6.2A3.8 3.8 0 1 0 12 19.8 3.8 3.8 0 0 0 12 8.2zm7.2-.9a1 1 0 1 0-1 1 1 1 0 0 0 1-1z"/>
-                  </svg>
-                </a>
-
-                <a class="iconBtn" href="https://www.facebook.com/profile.php?id=61586558676697" target="_blank" rel="noreferrer" aria-label="Facebook">
-                  <svg class="iconMono" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M14 8h2V5h-2c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h2.2l.8-3H13V9c0-.6.4-1 1-1z"/>
-                  </svg>
-                </a>
-
-                <a class="iconBtn" href="https://www.youtube.com/@brunu_uncut_travel" target="_blank" rel="noreferrer" aria-label="YouTube">
-                  <svg class="iconMono" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.6 12 4.6 12 4.6s-5.7 0-7.5.5A3 3 0 0 0 2.4 7.2 31.7 31.7 0 0 0 2 12a31.7 31.7 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.5 7.5.5 7.5.5s5.7 0 7.5-.5a3 3 0 0 0 2.1-2.1A31.7 31.7 0 0 0 22 12a31.7 31.7 0 0 0-.4-4.8zM10 15.5v-7l6 3.5-6 3.5z"/>
-                  </svg>
-                </a>
-
-                <a class="iconBtn" href="https://www.tiktok.com/@brunu_uncut_travel" target="_blank" rel="noreferrer" aria-label="TikTok">
-                  <svg class="iconMono" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M16 3c.6 3.4 2.6 5.4 6 6v3.1c-2.2-.1-4-.7-6-2v5.6c0 4-3.2 7.3-7.3 7.3A7.3 7.3 0 0 1 1.4 13c0-3.8 3-6.9 6.8-7.2v3.4a3.6 3.6 0 1 0 4.1 3.6V3h3.7z"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </aside>
-
     </div>
-  </div>
 
-  <!-- POPUP -->
-  <div class="modalOverlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="Sobre o fundador">
-    <div class="modal">
-      <div class="modalHeader">
-        <p class="modalTitle">Fundador</p>
-        <button class="modalClose" id="closeModal" aria-label="Fechar">✕</button>
-      </div>
-      <p class="modalText">
-        Depois de 18 anos como gestor de produto em tecnologia e muitas viagens, criei a Brunu Travel para transformar viagens em experiências autênticas e bem planeadas.
-        <strong>Trabalho com aquilo que me move.</strong>
-      </p>
+    <div class="modal-overlay" id="aboutModal" role="dialog" aria-modal="true">
+        <div class="modal-box">
+            <div class="modal-header">
+                <p class="modal-title">Quem somos</p>
+                <button class="close-btn" id="closeAboutBtn" aria-label="Fechar">✕</button>
+            </div>
+            <div class="modal-content-scroll clearfix">
+                
+                <img src="profile.jpg" alt="Bruno Oliveira" class="modal-avatar">
+                <h3>Eu sou o Bruno Oliveira, fundador da Brunu Travel.</h3>
+                <p>Depois de 18 anos como gestor de produto em tecnologia e muitas viagens, criei a Brunu Travel para transformar viagens em experiências autênticas e bem planeadas. Trabalho com aquilo que me move.</p>
+                
+                <div style="clear: both;"></div>
+
+                <h3>O que fazemos</h3>
+                <ul>
+                    <li>Viagens de grupo e grupos privados</li>
+                    <li>Criação de conteúdos (marcas, experiências e hotéis)</li>
+                    <li>Guias em PDF (gratuitos e pagos)</li>
+                    <li>Curadoria de experiências + logística tratada</li>
+                    <li>Ritmo equilibrado para viver o destino</li>
+                </ul>
+
+                <h3>Visão</h3>
+                <p>Tornar sonhos de viagem reais, com mais significado e menos ruído.</p>
+
+                <h3>Missão</h3>
+                <p>Liderar viagens com método e boa energia, com acompanhamento próximo do início ao fim.</p>
+
+                <h3>Valores</h3>
+                <p class="values-text">Autenticidade • Organização • Respeito pelo destino • Segurança • Irreverência • Transparência</p>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <script>
-    const openBtn = document.getElementById('openModal');
-    const overlay = document.getElementById('modalOverlay');
-    const closeBtn = document.getElementById('closeModal');
+    <script>
+        const openAboutBtn = document.getElementById('openAboutBtn');
+        const closeAboutBtn = document.getElementById('closeAboutBtn');
+        const aboutModal = document.getElementById('aboutModal');
 
-    function openModal(){
-      overlay.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeModal(){
-      overlay.classList.remove('open');
-      document.body.style.overflow = '';
-    }
+        function openModal() {
+            aboutModal.classList.add('open');
+            document.body.style.overflow = 'hidden'; 
+        }
 
-    openBtn?.addEventListener('click', openModal);
-    closeBtn?.addEventListener('click', closeModal);
+        function closeModal() {
+            aboutModal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
 
-    overlay?.addEventListener('click', (e) => {
-      if (e.target === overlay) closeModal();
-    });
+        openAboutBtn?.addEventListener('click', openModal);
+        closeAboutBtn?.addEventListener('click', closeModal);
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
-    });
-  </script>
+        aboutModal?.addEventListener('click', (e) => {
+            if (e.target === aboutModal) closeModal();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && aboutModal.classList.contains('open')) closeModal();
+        });
+    </script>
+
 </body>
 </html>
