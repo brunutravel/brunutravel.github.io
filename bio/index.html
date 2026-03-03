@@ -6,17 +6,72 @@
     <title>Brunu Travel • Bio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Base Styles & Animated Background */
+        /* Modern CSS Variables for Theming */
+        :root {
+            /* Default Dark/Blue Theme */
+            --bg-gradient: linear-gradient(-45deg, #041530, #0d326b, #0059ff, #009dff, #0d326b);
+            --text-main: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            
+            /* Primary Buttons (Brighter frosted glass for contrast) */
+            --btn-bg: rgba(255, 255, 255, 0.35); 
+            --btn-border: #ffffff;
+            --btn-text: #ffffff;
+            --btn-hover-bg: #ffffff;
+            --btn-hover-text: #0d326b;
+            --icon-bg: rgba(255, 255, 255, 0.3);
+            --icon-hover-bg: rgba(13, 50, 107, 0.1);
+
+            /* Secondary Buttons (Social Mentions - softer) */
+            --btn-sec-bg: rgba(255, 255, 255, 0.08);
+            --btn-sec-border: rgba(255, 255, 255, 0.4);
+            
+            /* Modals */
+            --modal-overlay: rgba(4, 21, 48, 0.85);
+            --modal-bg: rgba(255, 255, 255, 0.15);
+            --modal-border: rgba(255, 255, 255, 0.3);
+            --shadow: rgba(0, 0, 0, 0.25);
+        }
+
+        [data-theme="light"] {
+            /* Light/White Theme */
+            --bg-gradient: linear-gradient(-45deg, #f0f4f8, #e2e8f0, #cbd5e1, #e2e8f0);
+            --text-main: #0d326b;
+            --glass-bg: rgba(255, 255, 255, 0.6);
+            --glass-border: rgba(13, 50, 107, 0.15);
+            
+            /* Primary Buttons (Solid white to stand out from gradient) */
+            --btn-bg: #ffffff;
+            --btn-border: rgba(13, 50, 107, 0.4);
+            --btn-text: #0d326b;
+            --btn-hover-bg: #0d326b;
+            --btn-hover-text: #ffffff;
+            --icon-bg: rgba(13, 50, 107, 0.08);
+            --icon-hover-bg: rgba(255, 255, 255, 0.2);
+
+            /* Secondary Buttons (Softer, semi-transparent) */
+            --btn-sec-bg: rgba(255, 255, 255, 0.5);
+            --btn-sec-border: rgba(13, 50, 107, 0.2);
+
+            /* Modals */
+            --modal-overlay: rgba(255, 255, 255, 0.85);
+            --modal-bg: rgba(255, 255, 255, 0.9);
+            --modal-border: rgba(13, 50, 107, 0.2);
+            --shadow: rgba(13, 50, 107, 0.15);
+        }
+
         body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(-45deg, #041530, #0d326b, #0059ff, #009dff, #0d326b);
+            background: var(--bg-gradient);
             background-size: 400% 400%;
             animation: gradientBG 6s ease infinite;
-            color: white;
+            color: var(--text-main);
             min-height: 100vh;
             overflow-x: hidden;
+            transition: color 0.3s ease;
         }
 
         @keyframes gradientBG {
@@ -25,23 +80,57 @@
             100% { background-position: 0% 50%; }
         }
 
+        /* Floating Controls Panel (Top Right) */
+        .controls-panel {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            display: flex;
+            gap: 12px;
+            z-index: 900;
+        }
+
+        .control-btn {
+            background: var(--btn-bg);
+            border: 1px solid var(--btn-border);
+            color: var(--text-main);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: grid;
+            place-items: center;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 10px var(--shadow);
+        }
+
+        .control-btn:hover {
+            background: var(--btn-hover-bg);
+            color: var(--btn-hover-text);
+            transform: translateY(-2px);
+        }
+
         /* Desktop Grid Layout */
         .layout-container {
             display: flex;
-            max-width: 1100px;
+            max-width: 1200px;
             width: 100%;
             margin: 0 auto;
             min-height: 100vh;
             align-items: center;
             justify-content: center;
-            gap: 50px;
+            gap: 60px;
             padding: 40px 20px;
             box-sizing: border-box;
         }
 
         /* Left Column - Brand Info (Web Only) */
         .left-column {
-            flex: 1.1;
+            flex: 1.2;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -60,11 +149,11 @@
         }
 
         .brand-text-lines .line-1 {
-            font-size: 2.4rem;
+            font-size: 1.9rem;
             font-weight: 800;
-            line-height: 1.2;
+            line-height: 1.1;
             margin-bottom: 15px;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            text-shadow: 0 4px 15px var(--shadow);
         }
 
         .brand-text-lines .line-2 {
@@ -82,24 +171,24 @@
 
         .left-divider {
             width: 100%;
-            max-width: 400px;
-            height: 1px;
-            background: rgba(255,255,255,0.2);
+            max-width: 570px;
+            height: 2px;
+            background: var(--glass-border);
             margin-bottom: 25px;
         }
 
         .brand-contact {
             display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            font-size: 1.25rem; /* Larger font size as requested */
+            gap: 12px;
+            font-size: 1.15rem;
             opacity: 0.95;
             align-items: center;
             font-weight: 500;
+            white-space: nowrap; /* Forces web contact to single line */
         }
 
         .brand-contact a {
-            color: white;
+            color: var(--text-main);
             text-decoration: none;
             transition: opacity 0.3s;
         }
@@ -111,31 +200,31 @@
 
         /* Right Column - Interactive Bio Links Area */
         .right-column {
-            flex: 0.9;
+            flex: 0.8;
             width: 100%;
             max-width: 450px;
-            background: rgba(255, 255, 255, 0.08);
+            background: var(--glass-bg);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--glass-border);
             border-radius: 35px;
             padding: 40px 30px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+            box-shadow: 0 20px 50px var(--shadow);
             display: flex;
             flex-direction: column;
             align-items: center;
             box-sizing: border-box;
+            transition: background 0.3s, border 0.3s;
         }
 
-        /* Profile Header */
         .profile-photo {
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            border: 3px solid rgba(255, 255, 255, 0.4);
+            border: 3px solid var(--glass-border);
             margin-bottom: 15px;
             object-fit: cover;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 24px var(--shadow);
         }
 
         .profile-name {
@@ -160,21 +249,11 @@
             opacity: 0.9;
         }
 
-        .mobile-brand-info .line-1 {
-            font-weight: 700;
-            font-size: 1.15rem;
-        }
+        .mobile-brand-info .line-1 { font-weight: 700; font-size: 1.15rem; }
+        .mobile-brand-info .line-2 { font-size: 1rem; }
+        .mobile-brand-info .line-3 { font-size: 0.9rem; opacity: 0.8; }
 
-        .mobile-brand-info .line-2 {
-            font-size: 1rem;
-        }
-
-        .mobile-brand-info .line-3 {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        /* Button Hierarchy - Pill Shaped */
+        /* Buttons */
         .btn-group {
             width: 100%;
             display: flex;
@@ -188,27 +267,33 @@
             align-items: center;
             justify-content: space-between;
             padding: 15px 25px;
-            background-color: rgba(255, 255, 255, 0.12);
-            color: white;
+            background-color: var(--btn-bg);
+            color: var(--btn-text);
             text-decoration: none;
-            border: 2px solid rgba(255, 255, 255, 0.8);
+            border: 2px solid var(--btn-border);
             border-radius: 50px;
             font-size: 1.05rem;
             font-weight: 600;
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px var(--shadow);
             cursor: pointer;
             width: 100%;
             box-sizing: border-box;
             outline: none;
         }
 
+        /* Secondary Button Style (Mentions) */
+        .secondary-btn {
+            background-color: var(--btn-sec-bg);
+            border-color: var(--btn-sec-border);
+        }
+
         .action-btn:hover {
-            background-color: white;
-            color: #0d326b;
+            background-color: var(--btn-hover-bg);
+            color: var(--btn-hover-text);
             transform: translateY(-4px) scale(1.02);
-            border-color: white;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border-color: var(--btn-hover-bg);
+            box-shadow: 0 10px 25px var(--shadow);
         }
 
         .btn-left {
@@ -227,7 +312,7 @@
         .btn-icon {
             width: 32px;
             height: 32px;
-            background: rgba(255, 255, 255, 0.2);
+            background: var(--icon-bg);
             border-radius: 50%;
             display: grid;
             place-items: center;
@@ -239,8 +324,7 @@
         .btn-arrow {
             font-size: 1.2rem;
             font-weight: bold;
-            opacity: 0.7;
-            background: rgba(255, 255, 255, 0.15);
+            background: var(--icon-bg);
             width: 30px;
             height: 30px;
             display: grid;
@@ -252,11 +336,21 @@
 
         .action-btn:hover .btn-icon, 
         .action-btn:hover .btn-arrow {
-            background: rgba(13, 50, 107, 0.1);
-            color: #0d326b;
+            background: var(--icon-hover-bg);
+            color: var(--btn-hover-text);
         }
 
-        /* Section Titles for Mentions */
+        /* Keep WhatsApp purely distinct */
+        .btn-whatsapp .btn-icon {
+            background: #25D366;
+            color: white;
+            border: none;
+        }
+        .action-btn.btn-whatsapp:hover .btn-icon {
+            background: #25D366;
+            color: white;
+        }
+
         .sec-title {
             width: 100%;
             text-align: left;
@@ -269,7 +363,6 @@
             padding-left: 10px;
         }
 
-        /* Social Media Circles */
         .social-group {
             display: flex;
             gap: 15px;
@@ -282,25 +375,24 @@
             width: 45px;
             height: 45px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.12);
+            background: var(--btn-bg);
             display: grid;
             place-items: center;
-            color: white;
+            color: var(--text-main);
             font-size: 1.2rem;
             text-decoration: none;
             transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.8);
+            border: 2px solid var(--btn-border);
         }
 
         .social-btn:hover {
-            background: white;
-            color: #0d326b;
+            background: var(--btn-hover-bg);
+            color: var(--btn-hover-text);
             transform: translateY(-4px) scale(1.05);
-            border-color: white;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            border-color: var(--btn-hover-bg);
+            box-shadow: 0 8px 20px var(--shadow);
         }
 
-        /* Handle "@brunutravel" */
         .social-handle {
             font-size: 1.05rem;
             font-weight: 600;
@@ -310,7 +402,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* Mobile Signature Info */
+        /* Mobile Signature */
         .mobile-signature {
             display: none;
             text-align: center;
@@ -318,52 +410,56 @@
             opacity: 0.9;
             line-height: 1.8;
             margin-top: 5px;
-            border-top: 1px solid rgba(255,255,255,0.2);
+            border-top: 1px solid var(--glass-border);
             padding-top: 15px;
             width: 100%;
         }
 
-        .mobile-signature a {
-            color: white;
-            text-decoration: none;
+        .mobile-signature-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 5px;
         }
 
-        .mobile-signature a:hover {
-            text-decoration: underline;
+        .mobile-signature a {
+            color: var(--text-main);
+            text-decoration: none;
         }
+        .mobile-signature a:hover { text-decoration: underline; }
 
         /* Pop-up Modal Styling */
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(4, 21, 48, 0.8);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            background: var(--modal-overlay);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             display: none;
             align-items: center;
             justify-content: center;
             z-index: 1000;
             padding: 20px;
+            transition: background 0.3s;
         }
 
-        .modal-overlay.open {
-            display: flex;
-        }
+        .modal-overlay.open { display: flex; }
 
         .modal-box {
-            background: rgba(255, 255, 255, 0.15);
+            background: var(--modal-bg);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid var(--modal-border);
             border-radius: 25px;
             width: 100%;
-            max-width: 500px;
+            max-width: 650px; /* Widened to fit side-by-side */
             max-height: 85vh;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-            color: white;
+            box-shadow: 0 15px 40px var(--shadow);
+            color: var(--text-main);
             overflow: hidden;
+            transition: background 0.3s, border 0.3s;
         }
 
         .modal-header {
@@ -371,7 +467,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 25px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            border-bottom: 1px solid var(--modal-border);
         }
 
         .modal-title {
@@ -383,9 +479,9 @@
         }
 
         .close-btn {
-            background: rgba(255, 255, 255, 0.2);
+            background: var(--icon-bg);
             border: none;
-            color: white;
+            color: var(--text-main);
             width: 32px;
             height: 32px;
             border-radius: 10px;
@@ -397,9 +493,7 @@
             place-items: center;
         }
 
-        .close-btn:hover {
-            background: rgba(255, 255, 255, 0.4);
-        }
+        .close-btn:hover { background: var(--icon-hover-bg); }
 
         .modal-content-scroll {
             padding: 25px;
@@ -407,121 +501,99 @@
             text-align: left;
         }
 
-        .modal-content-scroll::-webkit-scrollbar {
-            width: 6px;
-        }
+        .modal-content-scroll::-webkit-scrollbar { width: 6px; }
         .modal-content-scroll::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.3);
+            background: var(--glass-border);
             border-radius: 10px;
         }
 
-        .modal-avatar {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.4);
+        /* Flex layout for the modal intro */
+        .modal-intro-flex {
+            display: flex;
+            gap: 25px;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .modal-avatar-tall {
+            width: 150px;
+            height: 220px;
+            border-radius: 15px;
+            border: 2px solid var(--modal-border);
             object-fit: cover;
-            float: left;
-            margin: 0 20px 10px 0;
+            flex-shrink: 0;
+            box-shadow: 0 8px 20px var(--shadow);
+        }
+
+        .modal-intro-text h3 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            line-height: 1.4;
+            font-weight: 700;
+        }
+
+        .modal-intro-text p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+            font-weight: 300;
+            opacity: 0.95;
         }
 
         .modal-content-scroll h3 {
             font-size: 1.1rem;
             font-weight: 700;
-            margin: 20px 0 10px 0;
-            color: #e0f7fa;
-        }
-        
-        .modal-content-scroll h3:first-of-type {
-            margin-top: 0;
-            color: white;
-            font-size: 1.15rem;
-            line-height: 1.4;
+            margin: 0 0 10px 0;
         }
 
-        .modal-content-scroll p {
+        .modal-content-scroll p, .modal-content-scroll ul {
             font-size: 0.95rem;
             line-height: 1.6;
-            margin: 0 0 15px 0;
+            margin: 0 0 20px 0;
             font-weight: 300;
             opacity: 0.95;
-            clear: none;
         }
 
-        .modal-content-scroll ul {
-            margin: 0 0 15px 0;
-            padding-left: 20px;
-            font-size: 0.95rem;
-            font-weight: 300;
-            opacity: 0.95;
-            line-height: 1.6;
-        }
+        .modal-content-scroll ul { padding-left: 20px; }
+        .modal-content-scroll li { margin-bottom: 6px; }
+        .values-text { font-weight: 600 !important; font-style: italic; opacity: 1 !important; }
 
-        .modal-content-scroll li {
-            margin-bottom: 6px;
-        }
-
-        .values-text {
-            font-weight: 600 !important;
-            font-style: italic;
-            opacity: 1 !important;
-        }
-
-        .clearfix::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-
-        /* Mobile Adjustments (Triggers below 800px) */
-        @media (max-width: 800px) {
-            .layout-container {
-                padding: 20px 15px;
-                min-height: auto;
-                gap: 0;
-            }
-            .left-column {
-                display: none; /* Hide Desktop Brand Info on small screens */
-            }
-            .right-column {
-                border: none;
-                box-shadow: none;
-                background: transparent;
-                backdrop-filter: none;
-                padding: 20px 10px;
-            }
-            .profile-name {
-                margin-bottom: 10px;
-            }
-            .mobile-brand-info {
-                display: block; /* Show Mobile Brand Info */
-            }
-            .mobile-signature {
-                display: block; /* Show Mobile Signature */
-            }
+        @media (max-width: 850px) {
+            .controls-panel { top: 15px; right: 15px; }
+            .layout-container { padding: 70px 15px 20px; min-height: auto; gap: 0; }
+            .left-column { display: none; }
+            .right-column { border: none; box-shadow: none; background: transparent; backdrop-filter: none; padding: 20px 10px; }
+            .profile-name { margin-bottom: 10px; }
+            .mobile-brand-info { display: block; }
+            .mobile-signature { display: block; }
             
-            /* Shrink buttons for mobile to prevent wrapping */
-            .action-btn {
-                font-size: 0.85rem;
-                padding: 12px 18px;
+            /* Responsive Buttons */
+            .action-btn { font-size: 0.85rem; padding: 12px 18px; }
+            .btn-left { gap: 10px; }
+            .btn-icon { width: 28px; height: 28px; font-size: 0.95rem; }
+            .btn-arrow { width: 26px; height: 26px; font-size: 1.05rem; }
+
+            /* Responsive Modal Flex */
+            .modal-intro-flex {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
             }
-            .btn-left {
-                gap: 10px;
-            }
-            .btn-icon {
-                width: 28px;
-                height: 28px;
-                font-size: 0.95rem;
-            }
-            .btn-arrow {
-                width: 26px;
-                height: 26px;
-                font-size: 1.05rem;
+            .modal-avatar-tall {
+                width: 100%;
+                max-width: 200px;
+                height: auto;
+                aspect-ratio: 3/4;
             }
         }
     </style>
 </head>
 <body>
+
+    <div class="controls-panel">
+        <button id="langToggle" class="control-btn">EN</button>
+        <button id="themeToggle" class="control-btn" aria-label="Toggle Theme"></button>
+    </div>
 
     <div class="layout-container">
         
@@ -529,9 +601,9 @@
             <img src="logo.png" alt="Brunu Travel" class="brand-logo">
             
             <div class="brand-text-lines">
-                <p class="line-1">Viagens de grupo e grupos privados</p>
-                <p class="line-2">Nós lideramos. Tu aproveitas.</p>
-                <p class="line-3">Europa • Ásia • Norte de África • Américas</p>
+                <p class="line-1" data-i18n="tagTitle">Viagens de grupo e grupos privados</p>
+                <p class="line-2" data-i18n="tagline">Nós lideramos. Tu aproveitas.</p>
+                <p class="line-3" data-i18n="regions">Europa • Ásia • Norte de África • Américas</p>
             </div>
             
             <div class="left-divider"></div>
@@ -551,32 +623,32 @@
             <h1 class="profile-name">Brunu Travel</h1>
 
             <div class="mobile-brand-info">
-                <p class="line-1">Viagens de grupo e grupos privados</p>
-                <p class="line-2">Nós lideramos. Tu aproveitas.</p>
-                <p class="line-3">Europa • Ásia • Norte de África • Américas</p>
+                <p class="line-1" data-i18n="tagTitleMobile">Viagens de grupo e grupos privados</p>
+                <p class="line-2" data-i18n="tagline">Nós lideramos. Tu aproveitas.</p>
+                <p class="line-3" data-i18n="regions">Europa • Ásia • Norte de África • Américas</p>
             </div>
 
             <div class="btn-group">
-                <a href="https://wa.me/351963623430?text=Ol%C3%A1%20Bruno!%20%F0%9F%91%8B" target="_blank" class="action-btn">
+                <a href="https://wa.me/351963623430" target="_blank" class="action-btn btn-whatsapp">
                     <div class="btn-left">
                         <div class="btn-icon"><i class="fa-brands fa-whatsapp"></i></div>
-                        <span>WhatsApp — Fala comigo</span>
+                        <span data-i18n="btnWhatsapp">WhatsApp — Fala comigo</span>
                     </div>
                     <div class="btn-arrow">›</div>
                 </a>
 
-                <a href="javascript:void(0)" id="openAboutBtn" class="action-btn">
+                <button id="openAboutBtn" class="action-btn">
                     <div class="btn-left">
                         <div class="btn-icon"><i class="fa-solid fa-address-card"></i></div>
-                        <span>Quem somos</span>
+                        <span data-i18n="btnAbout">Quem somos</span>
                     </div>
                     <div class="btn-arrow">›</div>
-                </a>
+                </button>
 
                 <a href="https://www.brunutravel.pt" target="_blank" class="action-btn">
                     <div class="btn-left">
                         <div class="btn-icon"><i class="fa-solid fa-users"></i></div>
-                        <span>Viagens de Grupo</span>
+                        <span data-i18n="btnGroups">Viagens de Grupo</span>
                     </div>
                     <div class="btn-arrow">›</div>
                 </a>
@@ -584,15 +656,15 @@
                 <a href="https://www.brunutravel.pt" target="_blank" class="action-btn">
                     <div class="btn-left">
                         <div class="btn-icon"><i class="fa-solid fa-book-open"></i></div>
-                        <span>Guias e Dicas</span>
+                        <span data-i18n="btnGuides">Guias e Dicas</span>
                     </div>
                     <div class="btn-arrow">›</div>
                 </a>
             </div>
 
-            <div class="sec-title">Mencionado nas redes sociais</div>
+            <div class="sec-title" data-i18n="mentionsTitle">Mencionado nas redes sociais</div>
             <div class="btn-group" style="margin-bottom: 20px;">
-                <a href="https://instagram.com/riia.rh" target="_blank" class="action-btn">
+                <a href="https://instagram.com/riia.rh" target="_blank" class="action-btn secondary-btn">
                     <div class="btn-left">
                         <div class="btn-icon"><i class="fa-brands fa-instagram"></i></div>
                         <span>Riia Recursos Humanos</span>
@@ -600,7 +672,7 @@
                     <div class="btn-arrow">›</div>
                 </a>
 
-                <a href="https://instagram.com/viagens.rainho" target="_blank" class="action-btn">
+                <a href="https://instagram.com/viagens.rainho" target="_blank" class="action-btn secondary-btn">
                     <div class="btn-left">
                         <div class="btn-icon"><i class="fa-brands fa-instagram"></i></div>
                         <span>Viagens Rainho</span>
@@ -618,8 +690,11 @@
             <div class="social-handle">@brunutravel</div>
 
             <div class="mobile-signature">
-                <a href="mailto:info@brunutravel.pt">info@brunutravel.pt</a><br>
-                <a href="https://www.brunutravel.pt" target="_blank">www.brunutravel.pt</a><br>
+                <div class="mobile-signature-row">
+                    <a href="mailto:info@brunutravel.pt">info@brunutravel.pt</a>
+                    <span>•</span>
+                    <a href="https://www.brunutravel.pt" target="_blank">www.brunutravel.pt</a>
+                </div>
                 <span>(+351) 963 623 430</span>
             </div>
 
@@ -629,39 +704,42 @@
     <div class="modal-overlay" id="aboutModal" role="dialog" aria-modal="true">
         <div class="modal-box">
             <div class="modal-header">
-                <p class="modal-title">Quem somos</p>
+                <p class="modal-title" data-i18n="modalHeader">Quem somos</p>
                 <button class="close-btn" id="closeAboutBtn" aria-label="Fechar">✕</button>
             </div>
-            <div class="modal-content-scroll clearfix">
+            <div class="modal-content-scroll">
                 
-                <img src="profile.jpg" alt="Bruno Oliveira" class="modal-avatar">
-                <h3>Eu sou o Bruno Oliveira, fundador da Brunu Travel.</h3>
-                <p>Depois de 18 anos como gestor de produto em tecnologia e muitas viagens, criei a Brunu Travel para transformar viagens em experiências autênticas e bem planeadas. Trabalho com aquilo que me move.</p>
-                
-                <div style="clear: both;"></div>
+                <div class="modal-intro-flex">
+                    <img src="bruno-full.jpg" alt="Bruno Oliveira" class="modal-avatar-tall">
+                    <div class="modal-intro-text">
+                        <h3 data-i18n="modalIntroTitle">Eu sou o Bruno Oliveira, fundador da Brunu Travel.</h3>
+                        <p data-i18n="modalIntroText">Depois de 18 anos como gestor de produto em tecnologia e muitas viagens, criei a Brunu Travel para transformar viagens em experiências autênticas e bem planeadas. Trabalho com aquilo que me move.</p>
+                    </div>
+                </div>
 
-                <h3>O que fazemos</h3>
+                <h3 data-i18n="modalWhatWeDo">O que fazemos</h3>
                 <ul>
-                    <li>Viagens de grupo e grupos privados</li>
-                    <li>Criação de conteúdos (marcas, experiências e hotéis)</li>
-                    <li>Guias em PDF (gratuitos e pagos)</li>
-                    <li>Curadoria de experiências + logística tratada</li>
-                    <li>Ritmo equilibrado para viver o destino</li>
+                    <li data-i18n="modalLi1">Viagens de grupo e grupos privados</li>
+                    <li data-i18n="modalLi2">Criação de conteúdos (marcas, experiências e hotéis)</li>
+                    <li data-i18n="modalLi3">Guias em PDF (gratuitos e pagos)</li>
+                    <li data-i18n="modalLi4">Curadoria de experiências + logística tratada</li>
+                    <li data-i18n="modalLi5">Ritmo equilibrado para viver o destino</li>
                 </ul>
 
-                <h3>Visão</h3>
-                <p>Tornar sonhos de viagem reais, com mais significado e menos ruído.</p>
+                <h3 data-i18n="modalVision">Visão</h3>
+                <p data-i18n="modalVisionText">Tornar sonhos de viagem reais, com mais significado e menos ruído.</p>
 
-                <h3>Missão</h3>
-                <p>Liderar viagens com método e boa energia, com acompanhamento próximo do início ao fim.</p>
+                <h3 data-i18n="modalMission">Missão</h3>
+                <p data-i18n="modalMissionText">Liderar viagens com método e boa energia, com acompanhamento próximo do início ao fim.</p>
 
-                <h3>Valores</h3>
-                <p class="values-text">Autenticidade • Organização • Respeito pelo destino • Segurança • Irreverência • Transparência</p>
+                <h3 data-i18n="modalValues">Valores</h3>
+                <p class="values-text" data-i18n="modalValuesText">Autenticidade • Organização • Respeito pelo destino • Segurança • Irreverência • Transparência</p>
             </div>
         </div>
     </div>
 
     <script>
+        // --- Modal Logic ---
         const openAboutBtn = document.getElementById('openAboutBtn');
         const closeAboutBtn = document.getElementById('closeAboutBtn');
         const aboutModal = document.getElementById('aboutModal');
@@ -685,6 +763,103 @@
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && aboutModal.classList.contains('open')) closeModal();
+        });
+
+        // --- Theme Toggle Logic ---
+        const themeToggleBtn = document.getElementById('themeToggle');
+        
+        let currentTheme = 'dark';
+        document.documentElement.removeAttribute('data-theme');
+        themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>'; 
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (currentTheme === 'dark') {
+                currentTheme = 'light';
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            } else {
+                currentTheme = 'dark';
+                document.documentElement.removeAttribute('data-theme');
+                themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            }
+        });
+
+        // --- Internationalization (i18n) Logic ---
+        const langToggleBtn = document.getElementById('langToggle');
+        
+        let currentLang = 'pt'; 
+
+        const translations = {
+            pt: {
+                tagTitle: "Viagens de grupo e grupos privados",
+                tagTitleMobile: "Viagens de grupo e grupos privados",
+                tagline: "Nós lideramos. Tu aproveitas.",
+                regions: "Europa • Ásia • Norte de África • Américas",
+                btnWhatsapp: "WhatsApp — Fala comigo",
+                btnAbout: "Quem somos",
+                btnGroups: "Viagens de Grupo",
+                btnGuides: "Guias e Dicas",
+                mentionsTitle: "Mencionado nas redes sociais",
+                modalHeader: "Quem somos",
+                modalIntroTitle: "Eu sou o Bruno Oliveira, fundador da Brunu Travel.",
+                modalIntroText: "Depois de 18 anos como gestor de produto em tecnologia e muitas viagens, criei a Brunu Travel para transformar viagens em experiências autênticas e bem planeadas. Trabalho com aquilo que me move.",
+                modalWhatWeDo: "O que fazemos",
+                modalLi1: "Viagens de grupo e grupos privados",
+                modalLi2: "Criação de conteúdos (marcas, experiências e hotéis)",
+                modalLi3: "Guias em PDF (gratuitos e pagos)",
+                modalLi4: "Curadoria de experiências + logística tratada",
+                modalLi5: "Ritmo equilibrado para viver o destino",
+                modalVision: "Visão",
+                modalVisionText: "Tornar sonhos de viagem reais, com mais significado e menos ruído.",
+                modalMission: "Missão",
+                modalMissionText: "Liderar viagens com método e boa energia, com acompanhamento próximo do início ao fim.",
+                modalValues: "Valores",
+                modalValuesText: "Autenticidade • Organização • Respeito pelo destino • Segurança • Irreverência • Transparência"
+            },
+            en: {
+                tagTitle: "Group travels and private groups",
+                tagTitleMobile: "Group travels and private groups",
+                tagline: "We lead. You enjoy.",
+                regions: "Europe • Asia • North Africa • Americas",
+                btnWhatsapp: "WhatsApp — Talk to me",
+                btnAbout: "About us",
+                btnGroups: "Group Travels",
+                btnGuides: "Guides & Tips",
+                mentionsTitle: "Mentioned on social media",
+                modalHeader: "About us",
+                modalIntroTitle: "I am Bruno Oliveira, founder of Brunu Travel.",
+                modalIntroText: "After 18 years as a tech product manager and traveling extensively, I created Brunu Travel to turn trips into authentic and well-planned experiences. I work with what moves me.",
+                modalWhatWeDo: "What we do",
+                modalLi1: "Group travels and private groups",
+                modalLi2: "Content creation (brands, experiences, and hotels)",
+                modalLi3: "PDF Guides (free and paid)",
+                modalLi4: "Experience curation + handled logistics",
+                modalLi5: "Balanced pace to truly experience the destination",
+                modalVision: "Vision",
+                modalVisionText: "Turning travel dreams into reality, with more meaning and less noise.",
+                modalMission: "Mission",
+                modalMissionText: "Leading trips with method and good energy, with close support from start to finish.",
+                modalValues: "Values",
+                modalValuesText: "Authenticity • Organization • Respect for the destination • Security • Irreverence • Transparency"
+            }
+        };
+
+        function applyLanguage(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key]; 
+                }
+            });
+            langToggleBtn.innerText = lang === 'pt' ? 'EN' : 'PT';
+            document.documentElement.lang = lang;
+        }
+
+        applyLanguage(currentLang);
+
+        langToggleBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'pt' ? 'en' : 'pt';
+            applyLanguage(currentLang);
         });
     </script>
 
